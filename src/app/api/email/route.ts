@@ -1,7 +1,6 @@
 import nodemailer from "nodemailer";
 
-export async function handler({ req, res }: any) {
-  if (req.method === "POST") {
+export async function POST({ req, res }: any) {
     const { name, phoneNumber, service, msg } = req.body;
 
     if (!name || !phoneNumber || !service || !msg) {
@@ -35,8 +34,5 @@ export async function handler({ req, res }: any) {
     } catch (err) {
       return res.status(500).json({ error: "Error sending email" });
     }
-  } else {
-    res.setHeader("Allow", ["POST"]);
-    res.status(405).end(`Method ${req.method} not allowed`);
-  }
+
 }
