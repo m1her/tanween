@@ -31,3 +31,10 @@ body {
 .slick-next::before {
   display: none;
 }
+
+select:invalid {
+  @apply text-gray-400;
+}
+option {
+  @apply text-black my-4;
+}

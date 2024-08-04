@@ -9,7 +9,7 @@ export const ContactSection = () => {
       className="flex flex-col gap-y-12 items-center py-16 md:px-16 px-8"
     >
       <div className="text-primeColor text-2xl">تواصل معنا</div>
-      <div className="w-full grid md:grid-cols-2 grid-cols-1">
+      <div className="w-full gap-y-6 grid md:grid-cols-2 grid-cols-1">
         <Contacts />
         <EmailForm />
       </div>

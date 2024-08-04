@@ -1,5 +1,6 @@
 "use client";
 import { Input } from "@/components/Input";
+import { Select } from "@/components/Select";
 import { Spinner } from "@/components/Spinner";
 import { TextAreaInput } from "@/components/TextAreaInput";
 import { object } from "@/util/validation";
@@ -50,6 +51,7 @@ export const EmailForm = () => {
   const sendAction = useCallback(
     async (event: FormEvent) => {
       event.preventDefault();
+      
       if (validate()) {
         setIsLoading(true);
         try {
@@ -58,10 +60,17 @@ export const EmailForm = () => {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ emailData }),
+            body: JSON.stringify({
+              name: "John Doe",
+              phoneNumber: "1234567890",
+              service: "Service Type",
+              msg: "Message content",
+            }),
           });
 
           const result = await response.json();
+          console.log(result);
+
           if (response.ok) {
             setIsLoading(false);
             setEmailData({
@@ -94,7 +103,7 @@ export const EmailForm = () => {
   );
 
   const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { value, name } = e.target;
     setEmailData((prev) => ({
@@ -104,7 +113,7 @@ export const EmailForm = () => {
   };
 
   return (
-    <form onSubmit={sendAction} className="flex flex-col gap-y-5 w-full">
+    <form onSubmit={sendAction} className="relative flex flex-col gap-y-5 w-full justify-end">
       <Input
         placeholder="الاسم كامل"
         id="name"
@@ -121,13 +130,26 @@ export const EmailForm = () => {
         placeholder="رقم الهاتف"
         error={errors?.phoneNumber}
       />
-      <Input
+      {/* <Input
         id="service"
         name="service"
         onChange={handleChange}
         value={emailData?.service}
         placeholder="الخدمة المطلوبة"
         error={errors?.service}
+      /> */}
+      <Select
+        id="service"
+        name="service"
+        onChange={handleChange}
+        value={emailData?.service}
+        error={errors?.service}
+        options={[
+          { value: "التصوير الفوتوغرافي", label: "التصوير الفوتوغرافي" },
+          { value: "التسويق الالكتروني", label: "التسويق الالكتروني" },
+          { value: "الهوية البصرية", label: "الهوية البصرية" },
+          { value: "التصوير السينيمائي", label: "التصوير السينيمائي" },
+        ]}
       />
       <TextAreaInput
         id="message-note"
@@ -143,7 +165,7 @@ export const EmailForm = () => {
       >
         {isLoading ? <Spinner /> : "ارسل طلبك"}
       </button>
-      <div className="text-[#ED2025] -mt-2">
+      <div className="text-[#ED2025] absolute -bottom-8">
         {(errors.name || errors.phoneNumber || errors.service) &&
           "جميع الحقول مطلوبة, يرجى التأكد من صحة الباينات المدخلة"}
       </div>
