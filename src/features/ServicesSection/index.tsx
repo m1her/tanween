@@ -3,7 +3,7 @@ import React from "react";
 
 export const ServicesSection = () => {
   return (
-    <div id="services" className="flex flex-col gap-y-12 items-center py-16 md:px-16 px-8">
+    <div id="services" className="flex flex-col gap-y-12 items-center py-16 lg:pt-16 pt-0 md:px-16 px-8">
       <div className="text-primeColor text-2xl">خدماتنا</div>
       <div className="grid lg:grid-cols-2 grid-cols-1 gap-5 w-full">
         <ServiceCard

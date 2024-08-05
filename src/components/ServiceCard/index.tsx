@@ -1,5 +1,7 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
+import Modal from "../Modal";
 
 export const ServiceCard = ({
   imageSrc,
@@ -10,6 +12,16 @@ export const ServiceCard = ({
   title: string;
   text: string;
 }) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const cancelHandler = () => {
+    setIsOpen(false);
+  };
+
+  const openHandler = () => {
+    setIsOpen(true);
+  };
+
   return (
     <div className="w-full md:aspect-video md:h-auto h-[300px] relative rounded-[30px] overflow-hidden">
       <Image src={imageSrc} alt={""} fill sizes="" className="rounded-[30px]" />
@@ -18,7 +30,10 @@ export const ServiceCard = ({
           <div className="md:text-3xl text-xl mb-2">{title}</div>
           <div className="md:text-sm text-xs">{text}</div>
         </div>
-        <div className="md:w-16 w-14 flex-shrink-0 aspect-square rounded-full flex items-center justify-center bg-white text-[#ED2025]">
+        <div
+          onClick={openHandler}
+          className="md:w-16 w-14 flex-shrink-0 aspect-square rounded-full flex items-center justify-center bg-white hover:mb-1 hover:shadow-sm hover:bg-[#f2f2f2] hover:text-[#de1c1f] text-[#ED2025] transition-all duration-200 cursor-pointer"
+        >
           <svg
             className="w-8 fill-[#ED2025]"
             viewBox="0 0 24 24"
@@ -28,6 +43,23 @@ export const ServiceCard = ({
           </svg>
         </div>
       </div>
+      {isOpen && (
+        <Modal onDismiss={cancelHandler}>
+          <div className="relative w-full aspect-video">
+            <Image
+              src={imageSrc}
+              alt={""}
+              fill
+              sizes=""
+              className="rounded-[30px]"
+            />
+          </div>
+          <div className="text-black mt-2">
+            <div className="md:text-3xl text-xl mb-2">{title}</div>
+            <div className="md:text-sm text-xs">{text}</div>
+          </div>
+        </Modal>
+      )}
     </div>
   );
 };
