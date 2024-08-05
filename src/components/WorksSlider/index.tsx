@@ -54,6 +54,8 @@ const Carousel = () => {
             imgUrl={"/caffea.png"}
             title={"كافيا"}
             text={"تسويق الكتروني • تصوير فوتوغرافي"}
+            logo="/cafia.png"
+            logoSize="w-10 h-5"
           />
         </div>
         <div className="lg:px-8 py-12 !flex justify-center">
@@ -61,6 +63,8 @@ const Carousel = () => {
             imgUrl={"/kayabel.png"}
             title={"كيابل"}
             text={"تصوير فوتوغرافي • تسويق الكتروني"}
+            logo="/cables.png"
+            logoSize="h-6 w-14"
           />
         </div>
         <div className="lg:px-8 py-12 !flex justify-center">
@@ -68,6 +72,8 @@ const Carousel = () => {
             imgUrl={"/Specialists.png"}
             title={"المختصون"}
             text={"تصميم الهوية • تسويق الكتروني"}
+            logo="/almokhtasoon.png"
+            logoSize="h-6 w-20"
           />
         </div>
       </Slider>
