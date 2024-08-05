@@ -29,9 +29,10 @@ export const HomeSection = () => {
           className="md:rounded-[60px] rounded-[30px] overflow-hidden"
           width="100%"
           controls={false}
-          loop={true}
-          autoPlay={true}
-          muted={true}
+          loop
+          autoPlay
+          muted
+          playsInline
         >
           <source src="/mainBnr.mp4" type="video/mp4" />
         </video>
