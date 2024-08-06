@@ -8,8 +8,8 @@ export async function POST() {
 
   const receipents = [
     {
-      name: "maher",
-      address: "zeromj12@gmail.com",
+      name: "someone",
+      address: "example@gmail.com",
     },
   ];
 
