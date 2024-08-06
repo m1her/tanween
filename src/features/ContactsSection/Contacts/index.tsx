@@ -55,7 +55,7 @@ export const Contacts = () => {
             </svg>
           </div>
           <div className="text-xl whitespace-nowrap font-light">
-            +966-127333444
+            966-127333444+
           </div>
         </div>
       </div>

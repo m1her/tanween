@@ -54,52 +54,10 @@ export const EmailForm = () => {
       
       if (validate()) {
         setIsLoading(true);
-        try {
-          const response = await fetch("/api/email", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              name: "John Doe",
-              phoneNumber: "1234567890",
-              service: "Service Type",
-              msg: "Message content",
-            }),
-          });
-
-          const result = await response.json();
-          console.log(result);
-
-          if (response.ok) {
-            setIsLoading(false);
-            setEmailData({
-              name: "",
-              phoneNumber: "",
-              service: "",
-              msg: "",
-            });
-          }
-        } catch (err) {
-          setErrors({
-            name: "Something Went Wrong",
-            phoneNumber: "",
-            service: "",
-            msg: "",
-          });
-          setTimeout(() => {
-            setErrors({
-              name: "",
-              phoneNumber: "",
-              service: "",
-              msg: "",
-            });
-          }, 2000);
-          setIsLoading(false);
-        }
+        // handle form data 
       }
     },
-    [emailData]
+    [validate]
   );
 
   const handleChange = (
